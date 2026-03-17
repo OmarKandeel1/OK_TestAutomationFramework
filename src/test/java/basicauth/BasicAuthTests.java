@@ -11,7 +11,7 @@ public class BasicAuthTests extends BaseTests {
     public void testLogin()
     {
         var basicAuthPage = homePage.clickBasicAuthLink();
-        basicAuthPage.loginIn("admina","admin");
+        basicAuthPage.loginIn("admin","admin");
         Assert.assertTrue(basicAuthPage.getText().contains("Congratulations!"), "Wrong Text!");
     }
 }

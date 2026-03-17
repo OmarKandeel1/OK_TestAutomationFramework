@@ -1,5 +1,6 @@
 package base;
 
+import driver.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,7 @@ import utils.ScreenshotUtils;
 import utils.WaitManager;
 import utils.WindowManager;
 
+import java.sql.Driver;
 import java.util.List;
 
 
@@ -22,7 +24,7 @@ public class BaseTests {
 
     @BeforeClass
     public void setUp() {
-        driver = new EdgeDriver();
+        driver = DriverFactory.getDriver("edge");
     }
 
     @BeforeMethod
