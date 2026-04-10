@@ -20,7 +20,7 @@ public class MultipleWindowPage extends BasePage{
 
     public NewWindowPage clickOnLink()
     {
-        safeClick(clickHereLocator);
+        actionsbot.safeClick(clickHereLocator);
         return new NewWindowPage(driver);
     }
 

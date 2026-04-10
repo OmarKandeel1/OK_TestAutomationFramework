@@ -24,13 +24,13 @@ public class BaseTests {
 
     @BeforeClass
     public void setUp() {
-        driver = DriverFactory.getDriver("edge");
+        DriverFactory.initDriver("edge");
+        driver = DriverFactory.getDriver();
     }
 
     @BeforeMethod
     public void goHome(){
        driver.get("https://the-internet.herokuapp.com");
-        //driver.get("https://aa-practice-test-automation.vercel.app"); //Ahmed Ashraf course trial
         windowManager= new WindowManager(driver);
         homePage = new HomePage(driver);
     }
@@ -47,7 +47,7 @@ public class BaseTests {
     @AfterClass
     public void tearDown()
     {
-        driver.quit();
+        DriverFactory.quitDriver();
     }
 
 

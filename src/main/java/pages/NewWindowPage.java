@@ -19,7 +19,7 @@ public class NewWindowPage extends BasePage{
     //*************************   Methods    **********************************//
     public String getText(){
 
-        return safeGetText(textLocator);
+        return actionsbot.safeGetText(textLocator);
     }
     //**************************************************************************//
 }

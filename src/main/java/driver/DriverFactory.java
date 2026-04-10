@@ -7,19 +7,34 @@ import org.openqa.selenium.edge.EdgeDriver;
 public class DriverFactory {
 
 
-    public static WebDriver getDriver(String browser) {
+    private static ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
+
+
+    public static void initDriver(String browser) {
 
         switch (browser.toLowerCase()) {
 
             case "chrome":
-                return new ChromeDriver(BrowserOptions.getChromeOptions());
-
+                driverThreadLocal.set(new ChromeDriver(BrowserOptions.getChromeOptions()));
+                break;
             case "edge":
-                return new EdgeDriver(BrowserOptions.getEdgeOptions());
+                driverThreadLocal.set(new EdgeDriver(BrowserOptions.getEdgeOptions()));
+                break;
 
             default:
                 throw new RuntimeException("Browser not supported");
         }
     }
+
+    public static WebDriver getDriver() {
+        return driverThreadLocal.get();
+    }
+
+    public static void quitDriver() {
+        driverThreadLocal.get().quit();
+        driverThreadLocal.remove();
+    }
+
 }
+
 

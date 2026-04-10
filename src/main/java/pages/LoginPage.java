@@ -13,24 +13,24 @@ public class LoginPage extends BasePage {
 
 
     //****************************    Locators    ****************************//
-    private By usernameField = By.id("username");
-    private By passwordField = By.id("password");
-    private By loginButton = By.cssSelector("#login>button");
+    private final By usernameField = By.id("username");
+    private final By passwordField = By.id("password");
+    private final By loginButton = By.cssSelector("#login>button");
 
     //**************************************************************************//
 
 
     //*************************   Methods    **********************************//
     public void setUserName(String username) {
-        driver.findElement(usernameField).sendKeys(username);
+        actionsbot.safeSendKeys(usernameField,username);
     }
 
     public void setPassword(String password) {
-        driver.findElement(passwordField).sendKeys(password);
+        actionsbot.safeSendKeys(passwordField,password);
     }
 
     public SecureAreaPage clickLoginButton() {
-        driver.findElement(loginButton).click();
+        actionsbot.safeClick(loginButton);
         return new SecureAreaPage(driver);
     }
     //**************************************************************************//

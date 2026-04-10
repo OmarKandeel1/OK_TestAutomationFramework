@@ -2,9 +2,7 @@ package pages;
 
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 
 public class BasicAuthPage extends BasePage{
     //****************************    Constructors    ****************************//
@@ -28,7 +26,7 @@ public class BasicAuthPage extends BasePage{
     }
     public String getText()
     {
-        return safeGetText(congratsLocator);
+        return actionsbot.safeGetText(congratsLocator);
     }
 
 
