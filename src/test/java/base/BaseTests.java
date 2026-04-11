@@ -24,8 +24,7 @@ public class BaseTests {
 
     @BeforeClass
     public void setUp() {
-        DriverFactory.initDriver("edge");
-        driver = DriverFactory.getDriver();
+        driver = DriverFactory.initDriver("edge");
     }
 
     @BeforeMethod
