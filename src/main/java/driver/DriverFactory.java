@@ -4,10 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ThreadGuard;
+import utils.PropertyReader;
 
 public class DriverFactory {
 
-
+    private final static  String browser_ = PropertyReader.getProperty("browserType");
     private static ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
 
 
@@ -30,16 +31,16 @@ public class DriverFactory {
 //    }
 
 
-    private static WebDriver getDriver(String browser_)
+    private static WebDriver getDriver()
     {
         Browser browserType = Browser.valueOf(browser_.toUpperCase());
         AbstractDriverFactory abstractDriver = browserType.getDriverFactory();
         return abstractDriver.createDriver();
     }
 
-    public static WebDriver initDriver(String browser_)
+    public static WebDriver initDriver()
     {
-        WebDriver driver = ThreadGuard.protect(getDriver(browser_));
+        WebDriver driver = ThreadGuard.protect( getDriver());
         driverThreadLocal.set(driver);
         return driverThreadLocal.get();
     }

@@ -1,5 +1,6 @@
 package base;
 
+import com.google.j2objc.annotations.Property;
 import driver.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,9 +10,7 @@ import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.HomePage;
-import utils.ScreenshotUtils;
-import utils.WaitManager;
-import utils.WindowManager;
+import utils.*;
 
 import java.sql.Driver;
 import java.util.List;
@@ -21,10 +20,12 @@ public class BaseTests {
     private WebDriver driver;
     protected HomePage homePage; //to use it in LoginTest when i inhert from this class
     protected WindowManager windowManager;
-
+    protected JsonReader jsonReader = new JsonReader("data");
     @BeforeClass
     public void setUp() {
-        driver = DriverFactory.initDriver("edge");
+        PropertyReader.loadProperties();
+        driver = DriverFactory.initDriver();
+
     }
 
     @BeforeMethod
