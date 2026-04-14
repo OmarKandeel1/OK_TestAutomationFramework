@@ -22,6 +22,7 @@ public class ScreenshotUtils {
         File screenshot = camera.getScreenshotAs(OutputType.FILE);
         try {
             Files.move(screenshot, new File(filePath));
+            AllureUtils.attachScreenshots(testName , filePath);
         } catch (IOException e) {
             System.out.println("Moving screenshot Error!");
             throw new RuntimeException(e);

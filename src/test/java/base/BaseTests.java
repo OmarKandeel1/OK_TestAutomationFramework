@@ -1,19 +1,11 @@
 package base;
 
-import com.google.j2objc.annotations.Property;
 import driver.DriverFactory;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import pages.HomePage;
+import pages.internet.HomePage;
 import utils.*;
-
-import java.sql.Driver;
-import java.util.List;
 
 
 public class BaseTests {
@@ -24,6 +16,7 @@ public class BaseTests {
     @BeforeClass
     public void setUp() {
         PropertyReader.loadProperties();
+        AllureUtils.cleanAllureResults();
         driver = DriverFactory.initDriver();
 
     }
@@ -47,6 +40,7 @@ public class BaseTests {
     @AfterClass
     public void tearDown()
     {
+        AllureUtils.setAllureEnv();
         DriverFactory.quitDriver();
     }
 

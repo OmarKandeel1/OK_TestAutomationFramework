@@ -3,20 +3,20 @@ package driver;
 public enum Browser {
     CHROME {
         @Override
-        public AbstractDriverFactory getDriverFactory() {
-            return new ChromeFactory();
+        public AbstractDriver getDriverFactory() {
+            return new Chrome();
         }
 
     },
 
     EDGE {
         @Override
-        public AbstractDriverFactory getDriverFactory() {
-            return new EdgeFactory();
+        public AbstractDriver getDriverFactory() {
+            return new Edge();
         }
     };
 
-    public abstract AbstractDriverFactory getDriverFactory();
+    public abstract AbstractDriver getDriverFactory();
 
 
 }
