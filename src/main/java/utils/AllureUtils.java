@@ -3,6 +3,7 @@ package utils;
 import com.google.common.collect.ImmutableMap;
 import io.qameta.allure.Allure;
 import org.apache.commons.io.FileUtils;
+import utils.dataReader.PropertyReader;
 
 import java.io.File;
 import java.nio.file.Path;

@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import pages.internet.LoginPage;
 import pages.internet.SecureAreaPage;
 
-import static utils.LoggerUtils.info;
+import static utils.logs.LogsManager.info;
 
 
 public class LoginTests extends BaseTests {

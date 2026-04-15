@@ -3,7 +3,7 @@ package pages.internet;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import base.BasePage;
+import pages.base.BasePage;
 
 public class HoversPage extends BasePage {
 

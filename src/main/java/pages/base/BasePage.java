@@ -1,24 +1,24 @@
-package base;
+package pages.base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
-import utils.ActionBot;
+import utils.actions.ElementActions;
 import utils.WaitManager;
-import utils.WindowManager;
+import utils.BrowserManager;
 
 public class BasePage {
     protected WebDriver driver;
     protected WaitManager wait;
-    protected WindowManager windowManager;
+    protected BrowserManager windowManager;
     protected Actions action;
-    protected ActionBot actionsbot;
+    protected ElementActions actionsbot;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new WaitManager(driver);
-        windowManager = new WindowManager(driver);
+        windowManager = new BrowserManager(driver);
         action  = new Actions(driver);
-        actionsbot = new ActionBot(driver);
+        actionsbot = new ElementActions(driver);
     }
 
 

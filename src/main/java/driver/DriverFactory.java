@@ -2,7 +2,8 @@ package driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ThreadGuard;
-import utils.PropertyReader;
+import utils.dataReader.PropertyReader;
+import utils.logs.LogsManager;
 
 public class DriverFactory {
 
@@ -16,6 +17,7 @@ public class DriverFactory {
     {
         Browser browserType = Browser.valueOf(browser_.toUpperCase());
         AbstractDriver abstractDriver = browserType.getDriverFactory();
+        LogsManager.info("Starting with borwser: "+browserType);
         return abstractDriver.createDriver();
     }
 
@@ -25,6 +27,7 @@ public class DriverFactory {
         driverThreadLocal.set(driver);
         return driverThreadLocal.get();
     }
+
 
 
 

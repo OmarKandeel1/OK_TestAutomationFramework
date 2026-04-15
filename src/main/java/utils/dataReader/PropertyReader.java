@@ -1,7 +1,7 @@
-package utils;
+package utils.dataReader;
 
-import com.google.common.io.Files;
 import org.apache.commons.io.FileUtils;
+import utils.logs.LogsManager;
 
 import java.io.File;
 import java.util.Collection;
@@ -18,7 +18,7 @@ public class PropertyReader {
                 try {
                     properties.load(FileUtils.openInputStream(file));
                 } catch (Exception e) {
-                    System.out.println("Error loading properties file!");
+                    LogsManager.error("Error loading properties file: " + file.getPath());
                 }
                 properties.putAll(System.getProperties());
                 System.getProperties().putAll(properties);
@@ -26,7 +26,7 @@ public class PropertyReader {
             return properties;
 
         } catch (Exception e) {
-            System.out.println("Error loading properties file!");
+            LogsManager.error("Error loading properties files");
             return null;
         }
 
@@ -37,7 +37,7 @@ public class PropertyReader {
         try {
             return System.getProperty(key);
         } catch (Exception e) {
-            System.out.println("Error getting property");
+            LogsManager.error("Error getting property: " + key);
             return "";
         }
 
