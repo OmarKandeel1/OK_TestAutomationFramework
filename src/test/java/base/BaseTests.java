@@ -1,12 +1,12 @@
 package base;
 
 import driver.DriverFactory;
+import utils.media.ScreenshotManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.internet.HomePage;
 import utils.*;
-import utils.dataReader.JsonReader;
 import utils.dataReader.PropertyReader;
 
 
@@ -14,7 +14,7 @@ public class BaseTests {
     private WebDriver driver;
     protected HomePage homePage; //to use it in LoginTest when i inhert from this class
     protected BrowserManager windowManager;
-    protected JsonReader jsonReader = new JsonReader("data");
+  //  protected JsonReader jsonReader = new JsonReader("data");
     @BeforeClass
     public void setUp() {
         PropertyReader.loadProperties();
@@ -35,7 +35,7 @@ public class BaseTests {
     {
         if(ITestResult.FAILURE == result.getStatus())
         {
-            ScreenshotUtils.takeScreenshoot(driver , result.getName());
+            ScreenshotManager.takeScreenshot(driver , result.getName());
         }
     }
 

@@ -11,14 +11,14 @@ public class BasePage {
     protected WaitManager wait;
     protected BrowserManager windowManager;
     protected Actions action;
-    protected ElementActions actionsbot;
+    protected ElementActions elementActions;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new WaitManager(driver);
         windowManager = new BrowserManager(driver);
         action  = new Actions(driver);
-        actionsbot = new ElementActions(driver);
+        elementActions = new ElementActions(driver);
     }
 
 

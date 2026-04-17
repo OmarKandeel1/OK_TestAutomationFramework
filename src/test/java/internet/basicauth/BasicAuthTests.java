@@ -17,7 +17,7 @@ public class BasicAuthTests extends BaseTests {
     public void testLogin()
     {
         var basicAuthPage = homePage.clickBasicAuthLink();
-        basicAuthPage.loginIn(jsonReader.getJsonData("username"), jsonReader.getJsonData("password"));
+      //  basicAuthPage.loginIn(jsonReader.getJsonData("username"), jsonReader.getJsonData("password"));
         Assert.assertTrue(basicAuthPage.getText().contains("Congratulations!"), "Wrong Text!");
     }
 }

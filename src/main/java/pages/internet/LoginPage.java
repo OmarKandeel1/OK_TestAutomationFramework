@@ -23,15 +23,15 @@ public class LoginPage extends BasePage {
 
     //*************************   Methods    **********************************//
     public void setUserName(String username) {
-        actionsbot.safeSendKeys(usernameField,username);
+        elementActions.safeSendKeys(usernameField,username);
     }
 
     public void setPassword(String password) {
-        actionsbot.safeSendKeys(passwordField,password);
+        elementActions.safeSendKeys(passwordField,password);
     }
 
     public SecureAreaPage clickLoginButton() {
-        actionsbot.safeClick(loginButton);
+        elementActions.safeClick(loginButton);
         return new SecureAreaPage(driver);
     }
     //**************************************************************************//

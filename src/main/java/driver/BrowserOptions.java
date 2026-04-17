@@ -2,6 +2,7 @@ package driver;
 
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeOptions;
+import utils.dataReader.PropertyReader;
 
 public class BrowserOptions {
     public static ChromeOptions getChromeOptions() {
@@ -10,6 +11,12 @@ public class BrowserOptions {
         options.addArguments("--start-maximized");
         options.addArguments("--disable-notifications");
         options.addArguments("--incognito");
+
+        if (PropertyReader.getProperty("executionType").equalsIgnoreCase("LocalHeadless")
+                || PropertyReader.getProperty("executionType").equalsIgnoreCase("Remote")
+        ) {
+            options.addArguments("--headless");
+        }
 
         return options;
     }
@@ -20,6 +27,12 @@ public class BrowserOptions {
         options.addArguments("--start-maximized");
         options.addArguments("--disable-notifications");
         options.addArguments("--incognito");
+
+        if (PropertyReader.getProperty("executionType").equalsIgnoreCase("LocalHeadless")
+                || PropertyReader.getProperty("executionType").equalsIgnoreCase("Remote")
+        ) {
+            options.addArguments("--headless");
+        }
 
         return options;
     }

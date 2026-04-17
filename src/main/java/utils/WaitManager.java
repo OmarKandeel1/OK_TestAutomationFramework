@@ -4,6 +4,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.dataReader.PropertyReader;
 import utils.logs.LogsManager;
 
 import java.time.Duration;
@@ -16,8 +17,8 @@ public class WaitManager {
     private WebDriverWait wait;
 
 
-    private static final int DEFAULT_TIMEOUT_SECONDS = 10;
-    private static final int DEFAULT_POLLING_MS = 100;
+    private static final int DEFAULT_TIMEOUT_SECONDS = Integer.parseInt(PropertyReader.getProperty("DEFAULT_TIMEOUT_SECONDS").trim());
+    private static final int DEFAULT_POLLING_MS = Integer.parseInt(PropertyReader.getProperty("DEFAULT_POLLING_MS").trim());
 
     public WaitManager(WebDriver driver_) {
         this.driver = driver_;

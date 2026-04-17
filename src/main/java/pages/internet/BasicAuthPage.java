@@ -29,7 +29,7 @@ public class BasicAuthPage extends BasePage {
     }
     public String getText()
     {
-        return actionsbot.safeGetText(congratsLocator);
+        return elementActions.safeGetText(congratsLocator);
     }
 
 

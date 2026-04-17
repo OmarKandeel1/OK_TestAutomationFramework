@@ -27,7 +27,7 @@ public class EntryAddPage extends BasePage {
         //Must wait
        // driver.findElement(closeModalLocator).click();
         //Now we will use SafeClick
-        actionsbot.safeClick(closeModalLocator);
+        elementActions.safeClick(closeModalLocator);
     }
 
     public String getEntryAddText() {
@@ -36,7 +36,7 @@ public class EntryAddPage extends BasePage {
 
     public void clickOnLink() {
         //driver.findElement(clickHereLinkLocator).click();
-        actionsbot.safeClick(clickHereLinkLocator);
+        elementActions.safeClick(clickHereLinkLocator);
     }
 
     public boolean isClickOnLinkClickable() {
