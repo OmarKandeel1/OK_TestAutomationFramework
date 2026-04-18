@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import pages.base.BasePage;
+import utils.actions.ElementActions;
 
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
@@ -30,7 +31,7 @@ public class FileUploadPage extends BasePage {
     //*************************   Methods    **********************************//
 
     public void clickOnUploadButton() {
-        driver.findElement(uploadButtonLocator).click();
+        elementActions.safeClick(uploadButtonLocator);
     }
 
     public void clickOnChooseFileButton() {

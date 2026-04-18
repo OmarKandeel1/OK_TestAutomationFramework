@@ -10,7 +10,7 @@ import utils.logs.LogsManager;
 import java.io.File;
 
 public class ElementActions {
-    private final WebDriver driver;
+    private  final WebDriver driver;
     private final WaitManager wait;
 
     public ElementActions(WebDriver driver) {
@@ -19,7 +19,7 @@ public class ElementActions {
     }
 
     //Find an Element with no wait
-    public WebElement findElement(By locator) {
+    public  WebElement findElement(By locator) {
         WebElement element = driver.findElement(locator);
         LogsManager.info("Found element: " + locator);
         return element;

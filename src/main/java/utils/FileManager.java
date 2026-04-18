@@ -59,5 +59,14 @@ public class FileManager {
 
     }
 
+    public static void copyDir(File source, File dest) {
+        try {
+            FileUtils.copyDirectory(source, dest);
+            LogsManager.info("Directory copied from: " + source.getAbsolutePath() + " to: " + dest.getAbsolutePath());
+        } catch (Exception e) {
+            LogsManager.error("Failed to copy Directory: " + source.getAbsolutePath() + " to: " + dest.getAbsolutePath() + " Error: " + e.getMessage());
+        }
+    }
+
 
 }

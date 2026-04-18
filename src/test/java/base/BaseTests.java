@@ -1,6 +1,8 @@
 package base;
 
+import customlisteners.TestNGListeners;
 import driver.DriverFactory;
+import driver.WebDriverProvider;
 import utils.media.ScreenshotManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
@@ -9,18 +11,15 @@ import pages.internet.HomePage;
 import utils.*;
 import utils.dataReader.PropertyReader;
 
-
-public class BaseTests {
+@Listeners(TestNGListeners.class)
+public class BaseTests implements WebDriverProvider {
     private WebDriver driver;
     protected HomePage homePage; //to use it in LoginTest when i inhert from this class
     protected BrowserManager windowManager;
   //  protected JsonReader jsonReader = new JsonReader("data");
     @BeforeClass
     public void setUp() {
-        PropertyReader.loadProperties();
-        AllureUtils.cleanAllureResults();
         driver = DriverFactory.initDriver();
-
     }
 
     @BeforeMethod
@@ -42,9 +41,12 @@ public class BaseTests {
     @AfterClass
     public void tearDown()
     {
-        AllureUtils.setAllureEnv();
         DriverFactory.quitDriver();
     }
 
 
+    @Override
+    public WebDriver getWebDriver() {
+        return driver;
+    }
 }

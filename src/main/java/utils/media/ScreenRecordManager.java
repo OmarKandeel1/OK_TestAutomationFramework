@@ -5,6 +5,7 @@ import com.automation.remarks.video.recorder.IVideoRecorder;
 import com.automation.remarks.video.recorder.VideoRecorder;
 import utils.dataReader.PropertyReader;
 import utils.logs.LogsManager;
+import utils.report.AllureAttachmentManager;
 import ws.schild.jave.Encoder;
 import ws.schild.jave.EncoderException;
 import ws.schild.jave.MultimediaObject;
@@ -51,6 +52,8 @@ public class ScreenRecordManager {
 
                 File mp4File = encodeRecording(videoFile);
                 LogsManager.info("Recording stopped and converted to MP4: " + mp4File.getName());
+                AllureAttachmentManager.attachRecords(testMethodName);
+                LogsManager.info("Recording attached to Allure report: " + mp4File.getName());
             }
         } catch (Exception e) {
             LogsManager.error("Failed to stop recording: " + e.getMessage());

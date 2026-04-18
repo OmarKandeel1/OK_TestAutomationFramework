@@ -1,9 +1,14 @@
 package utils.logs;
 
+import com.google.j2objc.annotations.Property;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import utils.dataReader.PropertyReader;
+import utils.report.AllureConstants;
 
 public class LogsManager {
+    public static final String LOGS_PATH = AllureConstants.USER_DIR + "test-outputs/Logs/";
+
 
     private static Logger logger(){
         return LogManager.getLogger(Thread.currentThread().getStackTrace()[3].getClassName());

@@ -7,7 +7,7 @@ import java.io.File;
 import java.util.Collection;
 import java.util.Properties;
 
-public class PropertyReader {
+public  class PropertyReader {
 
     public static Properties loadProperties() {
         try {

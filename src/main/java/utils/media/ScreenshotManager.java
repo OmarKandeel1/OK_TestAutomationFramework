@@ -2,16 +2,16 @@ package utils.media;
 
 import com.google.common.io.Files;
 import org.openqa.selenium.*;
-import utils.AllureUtils;
 import utils.TimeManager;
 import utils.logs.LogsManager;
+import utils.report.AllureAttachmentManager;
 
 import java.io.File;
 import java.io.IOException;
 
 public class ScreenshotManager {
 
-    private final static String SCREENSHOT_DIR = "test-outputs/screenshots/";
+    public final static String SCREENSHOT_DIR = "test-outputs/screenshots/";
     private final static String SCREENSHOT_EXT = ".png";
 
 
@@ -23,7 +23,7 @@ public class ScreenshotManager {
         try {
             Files.move(screenshot, new File(filePath));
             LogsManager.info("Screenshot saved: " + filePath);
-            AllureUtils.attachScreenshots(testName, filePath);
+            AllureAttachmentManager.attachScreenshots(testName, filePath);
         } catch (IOException e) {
             LogsManager.error("Error Taking Screenshot!" + e.getMessage());
             throw new RuntimeException(e);
@@ -46,7 +46,7 @@ public class ScreenshotManager {
                 + SCREENSHOT_EXT;
 
         File screenshot = element.getScreenshotAs(OutputType.FILE);
-        // TODO: attach the SS to Allure
+        AllureAttachmentManager.attachScreenshots(elementName , filePath);
 
         try {
             Files.move(screenshot, new File(filePath));
