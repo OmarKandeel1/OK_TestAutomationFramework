@@ -1,6 +1,6 @@
 package internet.modals;
 
-import base.BaseTests;
+import internet.base.BaseTests;
 import org.testng.annotations.Test;
 
 public class EntryAddTests extends BaseTests {

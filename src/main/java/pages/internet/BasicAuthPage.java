@@ -4,7 +4,7 @@ package pages.internet;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import pages.base.BasePage;
+import pages.internet.base.BasePage;
 
 public class BasicAuthPage extends BasePage {
     //****************************    Constructors    ****************************//

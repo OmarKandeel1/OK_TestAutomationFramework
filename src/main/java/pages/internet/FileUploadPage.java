@@ -4,8 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import pages.base.BasePage;
-import utils.actions.ElementActions;
+import pages.internet.base.BasePage;
 
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;

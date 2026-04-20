@@ -3,7 +3,7 @@ package pages.internet;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import pages.base.BasePage;
+import pages.internet.base.BasePage;
 
 public class InfiniteScrollPage extends BasePage {
     //****************************    Constructors    ****************************//

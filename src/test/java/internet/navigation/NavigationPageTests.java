@@ -1,7 +1,7 @@
 package internet.navigation;
 
 
-import base.BaseTests;
+import internet.base.BaseTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

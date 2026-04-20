@@ -1,4 +1,4 @@
-package base;
+package internet.base;
 
 import customlisteners.TestNGListeners;
 import driver.DriverFactory;
@@ -16,7 +16,7 @@ public class BaseTests implements WebDriverProvider {
     private WebDriver driver;
     protected HomePage homePage; //to use it in LoginTest when i inhert from this class
     protected BrowserManager windowManager;
-  //  protected JsonReader jsonReader = new JsonReader("data");
+   //protected JsonReader jsonReader = new JsonReader("data");
     @BeforeClass
     public void setUp() {
         driver = DriverFactory.initDriver();
@@ -30,13 +30,13 @@ public class BaseTests implements WebDriverProvider {
     }
 
     @AfterMethod
-    public void takeScreenshootOnFailure(ITestResult result)
-    {
-        if(ITestResult.FAILURE == result.getStatus())
-        {
-            ScreenshotManager.takeScreenshot(driver , result.getName());
-        }
-    }
+//    public void takeScreenshootOnFailure(ITestResult result)
+//    {
+//        if(ITestResult.FAILURE == result.getStatus())
+//        {
+//            ScreenshotManager.takeScreenshot(driver , result.getName());
+//        }
+//    }
 
     @AfterClass
     public void tearDown()

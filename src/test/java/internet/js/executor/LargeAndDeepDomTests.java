@@ -1,6 +1,6 @@
 package internet.js.executor;
 
-import base.BaseTests;
+import internet.base.BaseTests;
 import org.testng.annotations.Test;
 
 public class LargeAndDeepDomTests extends BaseTests {

@@ -9,6 +9,7 @@ import utils.TimeManager;
 import utils.dataReader.PropertyReader;
 import utils.logs.LogsManager;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,7 @@ public class AllureReportGenerator {
 
         Path reportPath = AllureConstants.REPORT_PATH.resolve(reportFileName);
         switch (OSUtils.getCurrentOS()) {
-            case WINDOWS -> TerminalUtils.executeTerminalCommand("cmd.exe", "/c", "start", reportPath.toString());
+            case WINDOWS -> TerminalUtils.executeTerminalCommand("cmd.exe", "/c", "start", "", reportPath.toString());
             case MAC, LINUX -> TerminalUtils.executeTerminalCommand("open", reportPath.toString());
             default -> LogsManager.warn("Opening Allure Report is not supported on this OS.");
         }
@@ -62,9 +63,33 @@ public class AllureReportGenerator {
     //rename report file with timestamp
 //rename report file to AllureReport_timestamp.html
     public static String renameReport() {
-        String newFileName = AllureConstants.REPORT_PREFIX + TimeManager.getTimeStamp() + AllureConstants.REPORT_EXTENSION;
-        FileManager.renameDir(AllureConstants.REPORT_PATH.resolve(AllureConstants.INDEX_HTML).toString(), newFileName);
-        return newFileName;
-    }
+        String newFileName = AllureConstants.REPORT_PREFIX
+                + TimeManager.getTimeStamp()
+                + AllureConstants.REPORT_EXTENSION;
 
+        File oldFile = AllureConstants.REPORT_PATH
+                .resolve(AllureConstants.INDEX_HTML)
+                .toFile();
+
+        File newFile = AllureConstants.REPORT_PATH
+                .resolve(newFileName)
+                .toFile();
+
+        try {
+            if (!oldFile.exists()) {
+                LogsManager.error("index.html not found for renaming: " + oldFile.getAbsolutePath());
+                return AllureConstants.INDEX_HTML;
+            }
+
+            FileUtils.moveFile(oldFile, newFile); // 🔥 THIS IS THE FIX
+
+            LogsManager.info("Report renamed to: " + newFile.getAbsolutePath());
+
+            return newFileName;
+
+        } catch (Exception e) {
+            LogsManager.error("Failed to rename report: " + e.getMessage());
+            return AllureConstants.INDEX_HTML; // fallback
+        }
+    }
 }

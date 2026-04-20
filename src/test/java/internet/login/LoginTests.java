@@ -1,6 +1,6 @@
 package internet.login;
 
-import base.BaseTests;
+import internet.base.BaseTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.internet.LoginPage;

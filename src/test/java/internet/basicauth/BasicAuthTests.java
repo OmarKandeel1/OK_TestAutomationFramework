@@ -1,6 +1,6 @@
 package internet.basicauth;
 
-import base.BaseTests;
+import internet.base.BaseTests;
 import io.qameta.allure.*;
 import io.qameta.allure.testng.Tag;
 import org.testng.Assert;
