@@ -6,24 +6,17 @@ import driver.WebDriverProvider;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import org.testng.annotations.Listeners;
+import utils.dataReader.JsonReader;
 
 @Listeners(TestNGListeners.class)
 public class BaseTests implements WebDriverProvider {
     protected GUIDriver gui;
+    protected JsonReader testData;
 
-
-//    @BeforeClass(alwaysRun = true)
-//    public void setUp() {
-//        gui = new GUIDriver();
-//    }
-//
-//
-//    @AfterClass(alwaysRun = true)
-//    public void tearDown() {
-//        if (gui != null) {
-//            gui.quit();
-//        }
-//    }
+@BeforeClass
+public void beforeClass(){
+    testData = new JsonReader("test-data/register-data");
+}
 
     @Override
     public WebDriver getWebDriver() {

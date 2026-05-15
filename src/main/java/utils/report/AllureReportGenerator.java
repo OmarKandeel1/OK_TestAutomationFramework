@@ -20,7 +20,12 @@ import static utils.report.AllureConstants.RESULTS_HISTORY_FOLDER;
 public class AllureReportGenerator {
 
     //Generate Allure Report
-    public static void generateReports(boolean isSingleFile) {
+    public static boolean generateReports(boolean isSingleFile) {
+        if (!AllureBinaryManager.downloadAndExtract()) {
+            LogsManager.error("Allure report generation skipped because Allure commandline is not available.");
+            return false;
+        }
+
         Path outputFolder = isSingleFile ? AllureConstants.REPORT_PATH : AllureConstants.FULL_REPORT_PATH;
 
         List<String> command = new ArrayList<>(List.of(
@@ -33,7 +38,7 @@ public class AllureReportGenerator {
 
         if (isSingleFile) command.add("--single-file");
 
-        TerminalUtils.executeTerminalCommand(command.toArray(new String[0]));
+        return TerminalUtils.executeTerminalCommand(command.toArray(new String[0]));
     }
 
 

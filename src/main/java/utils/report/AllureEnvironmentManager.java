@@ -23,6 +23,8 @@ public class AllureEnvironmentManager {
         );
 
         LogsManager.info("Allure environment variables set.");
-        AllureBinaryManager.downloadAndExtract();
+        if (!AllureBinaryManager.downloadAndExtract()) {
+            LogsManager.error("Allure commandline is not available. Report generation will be skipped.");
+        }
     }
 }

@@ -59,6 +59,19 @@ public class FileManager {
 
     }
 
+    //force Delete
+    public static void forceDelDir(File file) {
+        try {
+            FileUtils.forceDelete(file);
+            LogsManager.info("Directory deleted: " + file.getAbsolutePath());
+
+        } catch (Exception e) {
+            LogsManager.error("Failed to force clean Directory: " + file.getAbsolutePath() + " Error: " + e.getMessage());
+        }
+
+    }
+
+
     public static void copyDir(File source, File dest) {
         try {
             FileUtils.copyDirectory(source, dest);

@@ -37,13 +37,19 @@ public class TestNGListeners implements IExecutionListener, IInvokedMethodListen
 
     @Override
     public void onExecutionFinish() {
-        AllureReportGenerator.generateReports(false);
-        LogsManager.info("Allure reports generated successfully.");
+        boolean fullReportGenerated = AllureReportGenerator.generateReports(false);
+        if (fullReportGenerated) {
+            LogsManager.info("Allure reports generated successfully.");
+        }
+
         AllureReportGenerator.copyHistory();
         LogsManager.info("Allure history copied successfully.");
-        AllureReportGenerator.generateReports(true);
-        LogsManager.info("Allure single file report generated successfully.");
-        AllureReportGenerator.openReport(AllureReportGenerator.renameReport());
+
+        boolean singleFileReportGenerated = AllureReportGenerator.generateReports(true);
+        if (singleFileReportGenerated) {
+            LogsManager.info("Allure single file report generated successfully.");
+            AllureReportGenerator.openReport(AllureReportGenerator.renameReport());
+        }
 
     }
 
@@ -100,7 +106,7 @@ public class TestNGListeners implements IExecutionListener, IInvokedMethodListen
         FileManager.delDir(AllureConstants.RESULTS_FOLDER.toFile());
         FileManager.delDir(new File(ScreenshotManager.SCREENSHOT_DIR));
         FileManager.delDir(new File(ScreenRecordManager.RECORDINGS_PATH));
-        FileManager.delDir(new File(LogsManager.LOGS_PATH));
+        FileManager.forceDelDir(new File(LogsManager.LOGS_PATH + File.separator + "logs.log"));
     }
 
     private void createTestOutputDirectories() {

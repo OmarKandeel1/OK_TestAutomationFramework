@@ -1,0 +1,23 @@
+{
+  "name": "Automation_Test",
+  "email": "automationtest_",
+  "titleMale": "Mr",
+  "titleFemale": "Mrs",
+  "password": "123456Ok",
+  "day": "1",
+  "month": "1",
+  "year": "1990",
+  "firstName": "Automation_FirstName",
+  "lastName": "Automation_LastName",
+  "company": "Automation_Company",
+  "address1": "Automation_Address1",
+  "address2": "Automation_Address2",
+  "city": "Automation_City",
+  "state": "Alabama",
+  "postalCode": "12345",
+  "country": "United States",
+  "additionalInfo": "Automation_AdditionalInfo",
+  "homePhone": "1234567890",
+  "mobilePhone": "0987654321",
+  "alias": "Automation_Alias"
+}

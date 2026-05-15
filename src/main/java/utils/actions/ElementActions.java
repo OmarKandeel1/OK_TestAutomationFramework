@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import utils.WaitManager;
 import utils.logs.LogsManager;
 
@@ -67,6 +68,27 @@ public class ElementActions {
         element.sendKeys(fileAbsolute);
         LogsManager.info("Uploaded file: " + fileAbsolute + " using element: " + locator_);
     }
+
+    //Select from DropDown
+    private Select findDropDownElement(By locator) {
+        WebElement element = wait.waitForVisibility(locator);
+        return new Select(element);
+    }
+
+    public void selectFromDropDown(By locator_ , String value)
+    {
+        Select element = findDropDownElement(locator_);
+        element.selectByValue(value);
+        LogsManager.info("Selected value: " + value + " from dropdown: " + locator_);
+    }
+
+    public String getSelectedDropDownText(By locator) {
+        Select dropdown = findDropDownElement(locator);
+        String selectedText = dropdown.getFirstSelectedOption().getText();
+        LogsManager.info("Selected dropdown text is: " + selectedText + " from dropdown: " + locator);
+        return selectedText;
+    }
+
 
 
 }
