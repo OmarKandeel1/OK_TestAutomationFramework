@@ -1,10 +1,13 @@
 package utils.api;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.*;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +20,23 @@ public class RestHelper {
                 .log().all()
                 .baseUri(baseUrl)
                 .accept(ContentType.JSON);
+    }
+
+    private static RequestSpecification requestWithFormParams(String baseUrl,
+                                                              Map<String, String> formParams,
+                                                              Map<String, String> headers) {
+
+        RequestSpecification request = request(baseUrl);
+
+        if (formParams != null && !formParams.isEmpty()) {
+            request.formParams(formParams);
+        }
+
+        if (headers != null && !headers.isEmpty()) {
+            request.headers(headers);
+        }
+
+        return request;
     }
 
     private static RequestSpecification request(String baseUrl,
@@ -39,6 +59,7 @@ public class RestHelper {
 
         return request;
     }
+
 
     // *************************************************** GET Single Object *************************************************** //
 
@@ -142,6 +163,45 @@ public class RestHelper {
         return sendPostRequest(baseUrl, endpoint, body, null, null, expectedStatusCode, responseClass);
     }
 
+    public static <T> T sendPostRequestWithFormParams(
+            String baseUrl,
+            String endpoint,
+            Map<String, String> formParams,
+            Map<String, String> headers,
+            int expectedStatusCode,
+            Class<T> responseClass) {
+
+        try {
+
+            Response response = request(baseUrl, null, null, headers)
+                    .contentType(ContentType.URLENC)
+                    .formParams(formParams)
+                    .when()
+                    .post(endpoint)
+                    .then()
+                    .log().all()
+                    .statusCode(expectedStatusCode)
+                    .extract()
+                    .response();
+
+            String rawBody = response.getBody().asString();
+
+            String cleanJson = rawBody
+                    .replace("<html>", "")
+                    .replace("</html>", "")
+                    .replace("<body>", "")
+                    .replace("</body>", "")
+                    .trim();
+
+            ObjectMapper mapper = new ObjectMapper();
+
+            return mapper.readValue(cleanJson, responseClass);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to parse response", e);
+        }
+    }
+
     public static <T> T sendPostRequestWithQueryParams(String baseUrl,
                                                        String endpoint,
                                                        Object body,
@@ -159,6 +219,7 @@ public class RestHelper {
                                                    Class<T> responseClass) {
         return sendPostRequest(baseUrl, endpoint, body, null, headers, expectedStatusCode, responseClass);
     }
+
     public static <T> T sendPostRequest(String baseUrl,
                                         String endpoint,
                                         Object body,
@@ -177,5 +238,73 @@ public class RestHelper {
                 .extract()
                 .as(responseClass);
     }
+
+    //************************************************* Delete ******************************************************//
+
+    public static <T> T sendDeleteRequest(
+            String baseUrl,
+            String endpoint,
+            Object body,
+            Map<String, Object> queryParams,
+            Map<String, String> headers,
+
+            int expectedStatusCode,
+            Class<T> responseClass) {
+
+        RequestSpecification spec = request(baseUrl, queryParams, null, headers);
+        if (body != null) {
+            spec.body(body);
+        }
+
+        return spec
+                .when()
+                .delete(endpoint)
+                .then()
+                .log().all()
+                .statusCode(expectedStatusCode)
+                .extract()
+                .as(responseClass);
+    }
+
+    public static <T> T sendDeleteRequestWithFormParams(
+            String baseUrl,
+            String endpoint,
+            Map<String, String> formParams,
+            Map<String, String> headers,
+            int expectedStatusCode,
+            Class<T> responseClass) {
+
+        try {
+
+            Response response = request(baseUrl, null, null, headers)
+                    .contentType(ContentType.URLENC)
+                    .formParams(formParams)
+                    .when()
+                    .delete(endpoint)
+                    .then()
+                    .log().all()
+                    .statusCode(expectedStatusCode)
+                    .extract()
+                    .response();
+
+            String rawBody = response.getBody().asString();
+
+            String cleanJson = rawBody
+                    .replace("<html>", "")
+                    .replace("</html>", "")
+                    .replace("<body>", "")
+                    .replace("</body>", "")
+                    .trim();
+
+            ObjectMapper mapper = new ObjectMapper();
+
+            return mapper.readValue(cleanJson, responseClass);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to parse response", e);
+        }
+    }
+
+    //***************************************************************************************************************//
 
 }

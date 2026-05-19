@@ -19,5 +19,13 @@
   "additionalInfo": "Automation_AdditionalInfo",
   "homePhone": "1234567890",
   "mobilePhone": "0987654321",
-  "alias": "Automation_Alias"
+  "alias": "Automation_Alias",
+  "messages" : {
+    "accountCreated": "Your account has been created.",
+    "accountDeleted": "Your account has been deleted.",
+    "invalidEmail": "Invalid email address.",
+    "emailAlreadyRegistered": "Email Address already exist!",
+    "invalidPassword": "Invalid password.",
+    "authenticationFailed": "Authentication failed."
+  }
 }

@@ -7,10 +7,12 @@ import utils.WaitManager;
 import utils.actions.ElementActions;
 
 public abstract class BaseAssertion {
-    protected final WebDriver driver;
-    protected final WaitManager wait;
-    protected final ElementActions elementActions;
+    protected  WebDriver driver;
+    protected  WaitManager wait;
+    protected  ElementActions elementActions;
+    public BaseAssertion() {
 
+    }
 
     public BaseAssertion(WebDriver driver, WaitManager wait) {
         this.driver = driver;

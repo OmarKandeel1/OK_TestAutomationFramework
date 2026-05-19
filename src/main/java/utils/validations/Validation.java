@@ -12,6 +12,10 @@ public class Validation extends BaseAssertion {
     private static SoftAssert softAssert = new SoftAssert();
     private static boolean used=false;
 
+    public Validation() {
+        super();
+    }
+
     public Validation(WebDriver driver, WaitManager wait) {
         super(driver, wait);
     }

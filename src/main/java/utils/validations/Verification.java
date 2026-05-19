@@ -7,6 +7,12 @@ import utils.WaitManager;
 
 //Hard Assertions
 public class Verification extends BaseAssertion{
+
+    public Verification()
+    {
+        super();
+    }
+
     public Verification(WebDriver driver , WaitManager wait) {
         super(driver,wait );
     }

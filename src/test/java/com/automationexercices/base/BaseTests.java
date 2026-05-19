@@ -13,10 +13,6 @@ public class BaseTests implements WebDriverProvider {
     protected GUIDriver gui;
     protected JsonReader testData;
 
-@BeforeClass
-public void beforeClass(){
-    testData = new JsonReader("test-data/register-data");
-}
 
     @Override
     public WebDriver getWebDriver() {
