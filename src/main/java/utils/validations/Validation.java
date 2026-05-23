@@ -22,19 +22,19 @@ public class Validation extends BaseAssertion {
 
 
     @Override
-    protected void assertTrue(boolean condition, String message) {
+    public void assertTrue(boolean condition, String message) {
         used = true;
         softAssert.assertTrue(condition, message);
     }
 
     @Override
-    protected void assertFalse(boolean condition, String message) {
+    public void assertFalse(boolean condition, String message) {
         used = true;
         softAssert.assertFalse(condition, message);
     }
 
     @Override
-    protected void assertEquals(String actual, String expected, String message) {
+    public void assertEquals(String actual, String expected, String message) {
         used = true;
         softAssert.assertEquals(actual, expected, message);
     }

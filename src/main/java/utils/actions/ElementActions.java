@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import utils.WaitManager;
 import utils.logs.LogsManager;
@@ -27,16 +28,18 @@ public class ElementActions {
     }
 
 
-    public void safeClick(By locator) {
+    public ElementActions safeClick(By locator) {
         wait.waitForClickable(locator).click();
         LogsManager.info("Safe clicked element: " + locator);
+        return this;
     }
 
-    public void safeSendKeys(By locator, String text) {
+    public ElementActions safeSendKeys(By locator, String text) {
         WebElement element = wait.waitForVisibility(locator);
         element.clear();
         element.sendKeys(text);
         LogsManager.info("Sent text safely to element: " + locator + " | Text: " + text);
+        return this;
     }
 
     public String safeGetText(By locator) {
@@ -45,18 +48,26 @@ public class ElementActions {
         return text;
     }
 
+    public String getText(By locator) {
+        String text = findElement(locator).getText();
+        LogsManager.info("Got text not safely from element: " + locator + " | Text: " + text);
+        return text;
+    }
+
+
 
     //This function will scroll to an element using JS
-    public void scrollToElement(By locator) {
+    public ElementActions scrollToElementJS(By locator) {
         WebElement element = driver.findElement(locator);
         ((JavascriptExecutor) driver).executeScript("""
                 arguments[0].scrollIntoView({behavior:"auto",block:"center",inline:"center"});
                 """, element);
         LogsManager.info("Scrolled to element: " + locator);
+        return this;
     }
 
     //Upload File only work with <input type="file">
-    public void uploadFile(By locator_, String filePath) {
+    public ElementActions uploadFile(By locator_, String filePath) {
         String fileAbsolute = System.getProperty("user.dir") + File.separator + filePath;
 
         File file = new File(fileAbsolute);
@@ -67,6 +78,7 @@ public class ElementActions {
         WebElement element = wait.waitForVisibility(locator_);
         element.sendKeys(fileAbsolute);
         LogsManager.info("Uploaded file: " + fileAbsolute + " using element: " + locator_);
+        return this;
     }
 
     //Select from DropDown
@@ -75,11 +87,12 @@ public class ElementActions {
         return new Select(element);
     }
 
-    public void selectFromDropDown(By locator_ , String value)
+    public ElementActions selectFromDropDown(By locator_ , String value)
     {
         Select element = findDropDownElement(locator_);
         element.selectByValue(value);
         LogsManager.info("Selected value: " + value + " from dropdown: " + locator_);
+        return this;
     }
 
     public String getSelectedDropDownText(By locator) {
@@ -87,6 +100,14 @@ public class ElementActions {
         String selectedText = dropdown.getFirstSelectedOption().getText();
         LogsManager.info("Selected dropdown text is: " + selectedText + " from dropdown: " + locator);
         return selectedText;
+    }
+
+    public ElementActions hover(By locator)
+    {
+        scrollToElementJS(locator);
+        new Actions(driver).moveToElement(findElement(locator)).perform();
+        LogsManager.info("Hovered over element: " + locator);
+        return this;
     }
 
 
