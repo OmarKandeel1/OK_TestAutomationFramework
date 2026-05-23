@@ -3,6 +3,7 @@ package utils.validations;
 
 
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestResult;
 import org.testng.asserts.SoftAssert;
 import utils.WaitManager;
 import utils.logs.LogsManager;
@@ -39,7 +40,7 @@ public class Validation extends BaseAssertion {
         softAssert.assertEquals(actual, expected, message);
     }
 
-    public static void assertAll(){
+    public static void assertAll(ITestResult result){
         if(!used) return;
         try{
             softAssert.assertAll();
@@ -47,7 +48,8 @@ public class Validation extends BaseAssertion {
         }catch (AssertionError e)
         {
             LogsManager.error("Assertion failed: ",e.getMessage());
-            throw e;
+            result.setStatus(ITestResult.FAILURE);
+            result.setThrowable(e);
         }
         finally {
             softAssert = new SoftAssert();  // Reset the soft assert instance

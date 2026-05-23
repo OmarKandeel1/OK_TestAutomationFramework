@@ -64,7 +64,7 @@ public class TestNGListeners implements IExecutionListener, IInvokedMethodListen
     public void afterInvocation(org.testng.IInvokedMethod method, org.testng.ITestResult testResult) {
         if (method.isTestMethod()) {
             ScreenRecordManager.stopRecording(testResult.getName());
-            Validation.assertAll();
+            Validation.assertAll(testResult);
             if (testResult.getInstance() instanceof WebDriverProvider webDriverProvider) {
                 var driver = webDriverProvider.getWebDriver();
                 switch (testResult.getStatus()) {
