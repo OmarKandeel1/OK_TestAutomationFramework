@@ -1,9 +1,6 @@
 package utils.actions;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import utils.WaitManager;
@@ -28,11 +25,37 @@ public class ElementActions {
     }
 
 
+
     public ElementActions safeClick(By locator) {
         wait.waitForClickable(locator).click();
         LogsManager.info("Safe clicked element: " + locator);
         return this;
     }
+
+    public ElementActions fluentClick(By locator) {
+        wait.fluentWait().until(d ->
+        {
+            try {
+                WebElement element = findElement(locator);
+                //wait for element to be stable (Not moving)
+                Point initLocation = element.getLocation();
+                LogsManager.info("InitLocation is " + initLocation);
+                Point finalLocation = element.getLocation();
+                LogsManager.info("FinalLocation is " + finalLocation);
+                if (initLocation.equals(finalLocation)) {
+                    element.click();
+                    LogsManager.info("Clicked element: " + locator);
+                    return true;
+                }
+            } catch (Exception e) {
+                LogsManager.error("Failed to click element: " + locator + " | Exception: " + e.getMessage());
+                return false;
+            }
+            return false;
+        });
+        return this;
+    }
+
 
     public ElementActions safeSendKeys(By locator, String text) {
         WebElement element = wait.waitForVisibility(locator);

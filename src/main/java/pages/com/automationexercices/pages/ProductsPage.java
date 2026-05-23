@@ -18,12 +18,17 @@ public class ProductsPage {
     //****************************    Helper Functions    ******************************//
     private By getProductByName(String productName)
     {
-        return By.xpath("//div[@class = \"product-overlay\"] //p[contains(. , \"" + productName + "\")]");
+        return By.xpath("//div[@class = \"productinfo text-center\"] //p[contains(. , \"" + productName + "\")]");
+    }
+
+    private By productHover(String productName)
+    {
+        return By.xpath("//div[@class = \"productinfo text-center\"][contains(. , \"" + productName + "\")]");
     }
 
     private By getProductPriceByName(String productName)
     {
-        return By.xpath("//div[@class = \"product-overlay\"] //p[contains(. , \"" + productName + "\")] /preceding-sibling::h2");
+        return By.xpath("//div[@class = \"productinfo text-center\"] //p[contains(. , \"" + productName + "\")] /preceding-sibling::h2");
     }
 
     private By addToCartByName(String productName)
@@ -63,7 +68,8 @@ public class ProductsPage {
     @Step("Add product to cart its name: {productName}")
     public ProductsPage addProduct(String productName)
     {
-      gui.element().hover(getProductByName(productName));
+      gui.element().hover(productHover(productName));
+      gui.element().safeClick(addToCartByName(productName));
       return this;
     }
 

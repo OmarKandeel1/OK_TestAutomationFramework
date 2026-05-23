@@ -44,8 +44,8 @@ public class ProductsTest extends BaseTests {
     @Description("Search for product")
     public void searchForProduct(){
        new ProductsPage(gui).navigate()
-               .searchForProduct(testData.getJsonData("product1.name"))
-               .verifyProductNameAndPrice(testData.getJsonData("product1.name"), testData.getJsonData("product1.price"));
+               .searchForProduct(testData.getJsonData("searchProduct.name"))
+               .verifyProductNameAndPrice(testData.getJsonData("searchProduct.name"), testData.getJsonData("searchProduct.price"));
     }
 
     @Test
