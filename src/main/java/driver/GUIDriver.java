@@ -1,6 +1,7 @@
 package driver;
 
 import org.openqa.selenium.WebDriver;
+import utils.FileManager;
 import utils.LocatorUtils;
 import utils.actions.AlertActions;
 import utils.BrowserManager;
@@ -58,6 +59,9 @@ public class GUIDriver {
 
     public Verification verification() {
         return new Verification(get(), waits());
+    }
+    public FileManager file(){
+        return new FileManager();
     }
 
 

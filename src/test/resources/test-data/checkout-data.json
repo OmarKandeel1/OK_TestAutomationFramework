@@ -1,0 +1,50 @@
+{
+  "name": "Automation_Checkout",
+  "email": "automationCheckout_",
+  "titleMale": "Mr",
+  "titleFemale": "Mrs",
+  "password": "123456Ok",
+  "day": "1",
+  "month": "1",
+  "year": "1990",
+  "firstName": "Automation_Checkout_FirstName",
+  "lastName": "Automation_Checkout_LastName",
+  "company": "Automation_Checkout_Company",
+  "address1": "Automation_Checkout_Address1",
+  "address2": "Automation_Checkout_Address2",
+  "city": "Automation_Checkout_City",
+  "state": "Alabama",
+  "postalCode": "12345",
+  "country": "United States",
+  "additionalInfo": "Automation_Checkout_AdditionalInfo",
+  "homePhone": "1234567890",
+  "mobilePhone": "0987654321",
+  "alias": "Automation_Checkout_Alias",
+  "messages" : {
+    "emailAlreadyRegistered": "Email Address already exist!"
+  },
+  "product" :
+  {
+    "name" : "Men Tshirt",
+    "price" : "Rs. 400",
+    "quantity" : "1",
+    "total": "Rs. 400"
+  },
+
+  "card": {
+    "name" : "Automation Checkout",
+    "number": "4111111111111111",
+    "expiryMonth": "12",
+    "expiryYear": "2025",
+    "cvc": "123"
+  },
+  "message": {
+    "successOnPayment": "Your order has been placed successfully!",
+    ,,"PaymentSuccessPagemsg": "Congratulations! Your order has been confirmed!"
+  },
+
+  "invoiceFileName": "invoice.txt"
+
+
+
+}

@@ -9,7 +9,7 @@ import java.io.File;
 public class FileManager {
     private static final String USER_DIR = PropertyReader.getProperty("user.dir");
 
-    private FileManager() {
+    public FileManager() {
     } //TO prevent init
 
     //Renaming Dir
@@ -81,5 +81,20 @@ public class FileManager {
         }
     }
 
+//check if the file downloaded
+    public static boolean isFileDownloaded(String fileName) {
+        File downloadDir = new File(USER_DIR + PropertyReader.getProperty("downloadPath"));
+        File[] files = downloadDir.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.getName().equals(fileName)) {
+                    LogsManager.info("File found: " + file.getAbsolutePath());
+                    return true;
+                }
+            }
+        }
+        LogsManager.error("File not found: " + fileName);
+        return false;
+    }
 
 }

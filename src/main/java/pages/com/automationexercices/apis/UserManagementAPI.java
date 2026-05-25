@@ -7,6 +7,7 @@ import utils.api.RestHelper;
 import utils.dataReader.JsonReader;
 import utils.dataReader.PropertyReader;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class UserManagementAPI {
@@ -15,6 +16,7 @@ public class UserManagementAPI {
     private static final String BASE_URL = PropertyReader.getProperty("baseUrlApi");
     private static final String CREATE_ACCOUNT_ENDPOINT = "/createAccount";
     private static final String DELETE_ACCOUNT_ENDPOINT = "/deleteAccount";
+    private static final String LOGIN_ACCOUNT_ENDPOINT = "/verifyLogin";
     //************************************************************************************//
 
 
@@ -78,6 +80,15 @@ public class UserManagementAPI {
     }
 
 
+    @Step("Login using user email: {email} and pass: {pass}")
+    public UserManagementAPI loginToUserAccount(int status , String email, String pass)
+    {
+        HashMap<String, String> accountData = new HashMap<>();
+        accountData.put("email", email);
+        accountData.put("password", pass);
+        RestHelper.sendPostRequestWithFormParams(BASE_URL , LOGIN_ACCOUNT_ENDPOINT , accountData,null ,status ,UserResponseModel.class  );
+        return this;
+    }
 
 
 }

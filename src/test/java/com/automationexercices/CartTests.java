@@ -1,4 +1,4 @@
-package com.automationexercices.base;
+package com.automationexercices;
 
 import driver.GUIDriver;
 import io.qameta.allure.*;
@@ -10,18 +10,16 @@ import pages.com.automationexercices.components.NavigationBarComponent;
 import pages.com.automationexercices.pages.ProductsPage;
 import utils.dataReader.JsonReader;
 
-
 @Epic("Automation Exercise")
 @Feature("UI User Management")
-@Story("Products Management")
+@Story("Cart Management")
 @Severity(SeverityLevel.CRITICAL)
 @Owner("Kandeel")
-public class ProductsTest extends BaseTests {
-
+public class CartTests extends BaseTests {
     //****************************    Configurations    ****************************//
     @BeforeClass
     public void beforeClass() {
-        testData = new JsonReader("test-data/product-data");
+        testData = new JsonReader("test-data/cart-data");
     }
 
     @BeforeMethod
@@ -39,22 +37,20 @@ public class ProductsTest extends BaseTests {
 
     //**************************************************************************//
 
-
     @Test
-    @Description("Search for product")
-    public void searchForProduct(){
-       new ProductsPage(gui).navigate()
-               .searchForProduct(testData.getJsonData("searchProduct.name"))
-               .verifyProductNameAndPrice(testData.getJsonData("searchProduct.name"), testData.getJsonData("searchProduct.price"));
-    }
-
-    @Test
-    @Description("Add product to cart without Login")
-    public void addProductToCartWithoutLogin()
-    {
+    @Description("Verify Cart functionality")
+    public void verifyCartTC() {
         new ProductsPage(gui).navigate()
-                .addProduct(testData.getJsonData("product1.name"))
-                .validateItemAddedLabel("Added!");
+                .addProduct(testData.getJsonData("product.name"))
+                .validateItemAddedLabel(testData.getJsonData("messages.addToCartSuccessMessage"))
+                .clickOnViewCart()
+                .verifyProductName(testData.getJsonData("product.name"))
+                .verifyProductPrice(testData.getJsonData("product.name"), testData.getJsonData("product.price"))
+                .verifyProductQuantity(testData.getJsonData("product.name"), testData.getJsonData("product.quantity"))
+                .verifyProductTotalPrice(testData.getJsonData("product.name"), testData.getJsonData("product.total"));
+
+
     }
+
 
 }

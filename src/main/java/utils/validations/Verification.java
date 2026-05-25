@@ -18,17 +18,20 @@ public class Verification extends BaseAssertion{
     }
 
     @Override
-    public void assertTrue(boolean condition, String message) {
+    public Verification assertTrue(boolean condition, String message) {
         Assert.assertTrue(condition , message);
+        return this;
     }
 
     @Override
-    public void assertFalse(boolean condition, String message) {
+    public Verification assertFalse(boolean condition, String message) {
         Assert.assertFalse(condition, message);
+        return this;
+
     }
 
     @Override
-    public void assertEquals(String actual, String expected, String message) {
-        Assert.assertEquals(actual, expected, message);
+     public Verification assertEquals(String actual, String expected, String message) {        Assert.assertEquals(actual, expected, message);
+        return this;
     }
 }

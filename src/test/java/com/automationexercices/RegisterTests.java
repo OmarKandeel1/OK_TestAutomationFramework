@@ -1,4 +1,4 @@
-package com.automationexercices.base;
+package com.automationexercices;
 
 import driver.GUIDriver;
 import io.qameta.allure.Epic;
@@ -13,9 +13,6 @@ import pages.com.automationexercices.components.NavigationBarComponent;
 import pages.com.automationexercices.pages.SignupLoginPage;
 import utils.TimeManager;
 import utils.dataReader.JsonReader;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class RegisterTests extends BaseTests {
 
@@ -82,7 +79,6 @@ public class RegisterTests extends BaseTests {
     public void ValidateAlreadyRegisteredAcc()
     {
 
-        Map<String, String> headers = new HashMap<>();
 
 
 

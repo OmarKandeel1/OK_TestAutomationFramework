@@ -20,11 +20,11 @@ public abstract class BaseAssertion {
         this.elementActions = new ElementActions(driver);
     }
 
-    protected abstract void assertTrue(boolean condition, String message);
+    protected abstract BaseAssertion assertTrue(boolean condition, String message);
 
-    protected abstract void assertFalse(boolean condition, String message);
+    protected abstract BaseAssertion assertFalse(boolean condition, String message);
 
-    protected abstract void assertEquals(String actual, String expected, String message);
+    protected abstract BaseAssertion assertEquals(String actual, String expected, String message);
 
     public void isElementVisible(By locator) {
         boolean visible;

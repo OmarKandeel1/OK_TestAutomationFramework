@@ -82,10 +82,10 @@ public class ProductsPage {
     }
 
     @Step("Click on View Cart")
-    public ProductsPage clickOnViewCart()
+    public CartPage clickOnViewCart()
     {
         gui.element().safeClick(viewCartLocator);
-        return this;
+        return new CartPage(gui);
     }
 
     @Step("Search for product: {productName}")

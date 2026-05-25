@@ -1,4 +1,4 @@
-package com.automationexercices.base;
+package com.automationexercices;
 
 import driver.GUIDriver;
 import io.qameta.allure.Description;

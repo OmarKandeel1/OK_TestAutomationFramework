@@ -1,4 +1,4 @@
-package com.automationexercices.base;
+package com.automationexercices;
 
 import customlisteners.TestNGListeners;
 import driver.GUIDriver;

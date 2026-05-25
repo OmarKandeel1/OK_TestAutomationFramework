@@ -23,21 +23,24 @@ public class Validation extends BaseAssertion {
 
 
     @Override
-    public void assertTrue(boolean condition, String message) {
+    public Validation assertTrue(boolean condition, String message) {
         used = true;
         softAssert.assertTrue(condition, message);
+        return this;
     }
 
     @Override
-    public void assertFalse(boolean condition, String message) {
+    public Validation assertFalse(boolean condition, String message) {
         used = true;
         softAssert.assertFalse(condition, message);
+        return this;
     }
 
     @Override
-    public void assertEquals(String actual, String expected, String message) {
+    public Validation assertEquals(String actual, String expected, String message) {
         used = true;
         softAssert.assertEquals(actual, expected, message);
+        return this;
     }
 
     public static void assertAll(ITestResult result){
