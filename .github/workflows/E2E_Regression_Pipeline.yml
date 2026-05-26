@@ -41,5 +41,5 @@ jobs:
           uses: actions/upload-artifact@v7
           with:
                 name: Edge_Linux_Report
-                path: "test-output/reports/*.html"
+                path: "test-outputs/reports/*.html"
 
