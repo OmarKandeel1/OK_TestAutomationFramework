@@ -9,10 +9,10 @@ on:
       - master
   workflow_dispatch:
 
-  env:
-    TARGET: "%regex[.*Tests.*],com.automationexercices.tests.**,**,com.automationexercices.tests.**"
+env:
+  TARGET: "%regex[.*Tests.*],com.automationexercices.tests.**,**,com.automationexercices.tests.**"
 
-  jobs:
+jobs:
     Edge_Linux:
       runs-on: ubuntu-latest
       permissions:
